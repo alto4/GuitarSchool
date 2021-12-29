@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://alto4:TuckerAlton1@guitarschool.luth2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://alto4:TuckerAlton1@guitarschool.luth2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "jwtSecret": "tucker"
 }

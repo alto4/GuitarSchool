@@ -62,6 +62,7 @@ router.post(
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
+      console.log('Profile details => ', profile);
 
       // Update profile if one already exists corresponding to authenticated user
       if (profile) {

@@ -126,4 +126,52 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
+// PUT api/lessons/register/:id
+// Register for a lesson
+// Private
+router.put('/register/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    // Check if already subscribed
+    if (lesson.students.filter((student) => student.user.toString() === req.user.id).length > 0) {
+      return res.status(400).json({ msg: 'User already enrolled in the selected lesson.' });
+    }
+
+    lesson.students.unshift({ user: req.user.id });
+    console.log(lesson);
+
+    await lesson.save();
+
+    res.json(lesson.students);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error.');
+  }
+});
+
+// PUT api/lessons/unenroll/:id
+// Unenroll from a lesson
+// Private
+router.put('/unenroll/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    // Check if already subscribed
+    if (lesson.students.filter((student) => student.user.toString() === req.user.id).length === 0) {
+      return res.status(400).json({ msg: 'User is not currently enrolled in the selected lesson.' });
+    }
+
+    lesson.students = lesson.students.filter((student) => student.user.toString() !== req.user.id);
+    console.log(lesson.students);
+
+    await lesson.save();
+
+    res.json(lesson.students);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error.');
+  }
+});
+
 module.exports = router;

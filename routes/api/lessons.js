@@ -9,7 +9,7 @@ const User = require('../../models/User');
 
 // POST api/lessons
 // Create a new lesson
-// Prive
+// Private
 router.post(
   '/',
   [
@@ -58,5 +58,72 @@ router.post(
     }
   }
 );
+
+// GET api/lessons
+// Get all lessons
+// Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const lessons = await Lesson.find().sort({ createdOn: -1 });
+    res.json(lessons);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error.');
+  }
+});
+
+// GET api/lessons/:id
+// Get single lesson by ID
+// Private
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    if (!lesson) {
+      return res.status(404).json({ msg: 'Lesson not found.' });
+    }
+    res.json(lesson);
+  } catch (error) {
+    console.error(error.message);
+
+    if (error.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Lesson not found.' });
+    }
+
+    res.status(500).send('Server Error.');
+  }
+});
+
+// DELETE api/lessons/:id
+// Delete a single lesson
+// Private
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    if (!lesson) {
+      return res.status(404).json({ msg: 'Lesson not found.' });
+    }
+
+    // Ensure user attempting to delete lesson is the content creator
+    if (lesson.user.toString() !== req.user.id) {
+      return res.status(401).json({
+        msg: "User not authorized to perform this action. Only a lesson's creator or administrator may delete a lesson.",
+      });
+    }
+
+    await lesson.remove();
+
+    res.json({ msg: 'Lesson successfully removed.' });
+  } catch (error) {
+    console.error(error.message);
+
+    if (error.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Lesson not found.' });
+    }
+
+    res.status(500).send('Server Error.');
+  }
+});
 
 module.exports = router;

@@ -7,6 +7,7 @@ import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Lessons from './components/lessons/Lessons';
+import Alert from './components/layout/Alert';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -16,6 +17,7 @@ function App() {
       <Router>
         <Fragment>
           <Navbar />
+          <Alert />
           <Routes>
             <Route path='/' element={<Landing />} />
             <Route path='/lessons' element={<Lessons />} />

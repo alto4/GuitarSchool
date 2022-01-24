@@ -7,21 +7,25 @@ import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Lessons from './components/lessons/Lessons';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <Router>
-      <Fragment>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='/lessons' element={<Lessons />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />s
-        </Routes>
-        <Footer />
-      </Fragment>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<Landing />} />
+            <Route path='/lessons' element={<Lessons />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />s
+          </Routes>
+          <Footer />
+        </Fragment>
+      </Router>
+    </Provider>
   );
 }
 

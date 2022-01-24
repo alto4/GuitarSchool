@@ -32,6 +32,39 @@ body {
   border: 1px solid #ccc;
 }
 
+.auth-container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.auth-container label,
+.auth-container input {
+  text-align: left;
+  padding: .5rem 0;
+}
+
+::placeholder {
+  padding-left: .5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+}
+
+.auth-button {
+  padding: .5rem;
+  margin: 1rem 0;
+}
+
 footer {
   display: flex;
   justify-content: center;

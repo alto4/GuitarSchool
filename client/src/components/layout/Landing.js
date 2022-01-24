@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
@@ -10,6 +11,8 @@ const Landing = () => {
           written guides, and public domain sheet music, we are excited to foster an online community of guitar-seekers
           from around the world.
         </p>
+        <Link to='register'>Join Now</Link>
+        <Link to='login'>Sign In</Link>
       </div>
     </section>
   );

@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  height: 100px;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 2rem;
+  margin: auto;
+}
+
+.hero-container {
+  min-height: calc(100vh - 200px);
+  display: grid;
+  grid-template-columns: 1.3fr 2fr;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ccc;
+  height: 100px;
+}

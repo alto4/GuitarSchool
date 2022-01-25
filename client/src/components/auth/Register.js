@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, Route, useNavigate } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     name: '',
     password: '',
     passwordConfirm: '',
   });
+
+  let navigate = useNavigate();
 
   const { email, name, password, passwordConfirm } = formData;
 
@@ -30,9 +32,13 @@ const Register = ({ setAlert, register }) => {
       return;
     }
 
-    console.log('Success! Submit the following form data => ', formData);
-
     register({ name, email, password });
+
+    // Redirect after login
+    if (isAuthenticated) {
+      alert('Auth granter. redirect....');
+      navigate('/dashboard');
+    }
   };
 
   return (
@@ -68,6 +74,11 @@ const Register = ({ setAlert, register }) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default connect(null, { setAlert, register })(Register);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

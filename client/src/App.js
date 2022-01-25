@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
@@ -8,10 +8,21 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Lessons from './components/lessons/Lessons';
 import Alert from './components/layout/Alert';
+import Dashboard from './components/layout/Dashboard';
 import { Provider } from 'react-redux';
 import store from './store';
+import { loadUser, login } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>
@@ -23,6 +34,7 @@ function App() {
             <Route path='/lessons' element={<Lessons />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />s
+            <Route path='/dashboard' element={<Dashboard />} />
           </Routes>
           <Footer />
         </Fragment>

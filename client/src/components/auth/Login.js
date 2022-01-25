@@ -7,7 +7,7 @@ const Login = () => {
     password: '',
   });
 
-  const { email, name, password, passwordConfirm } = formData;
+  const { email, password } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -36,7 +36,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
     // Redirect after login
     if (isAuthenticated) {
-      alert('Auth granter. redirect....');
       navigate('/dashboard');
     }
   };

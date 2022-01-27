@@ -6,10 +6,8 @@ import setAuthToken from '../utils/setAuthToken';
 
 // Authenticate existing user
 export const loadUser = () => async (dispatch) => {
-  if (localStorage.token) {
-    console.log('Token still here', localStorage.token);
-    setAuthToken(localStorage.token);
-  }
+  console.log('Token still here', localStorage.token);
+  setAuthToken(localStorage.token);
 
   try {
     const res = axios.get('/api/auth');

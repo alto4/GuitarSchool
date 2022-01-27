@@ -21,6 +21,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li>
         <Link to='/'>Home</Link>
         <Link to='/lessons'>Lessons</Link>
+        <Link to='/dashboard'>Dashboard</Link>
         <Link to='/login' onClick={logout}>
           <i className='fa fa-sign-out'></i>Logout
         </Link>
@@ -35,26 +36,29 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </h1>
       {!loading && (
         <Fragment>
-          {isAuthenticated ? (
-            <ul className='nav-links'>
-              <li>
-                <Link to='/'>Home</Link>
-                <Link to='/lessons'>Lessons</Link>
-                <Link to='/login' onClick={logout}>
-                  <i className='fa fa-sign-out'></i>Logout
-                </Link>
-              </li>
-            </ul>
-          ) : (
-            <ul className='nav-links'>
-              <li>
-                <Link to='/'>Home</Link>
-                <Link to='/lessons'>Lessons</Link>
-                <Link to='/login'>Login</Link>
-                <Link to='/register'>Register</Link>
-              </li>
-            </ul>
-          )}
+          {isAuthenticated
+            ? // <ul className='nav-links'>
+              //   <li>
+              //     <Link to='/'>Home</Link>
+              //     <Link to='/lessons'>Lessons</Link>
+              //     <Link to='/dashboard'>Dashboard</Link>
+              //     <Link to='/login' onClick={logout}>
+              //       <i className='fa fa-sign-out'></i>Logout
+              //     </Link>
+              //   </li>
+              // </ul>
+              authLinks
+            : // <ul className='nav-links'>
+              //   <li>
+              //     <Link to='/'>Home</Link>
+              //     <Link to='/lessons'>Lessons</Link>
+              //     <Link to='/login'>Login</Link>
+              //     <Link to='/register'>Register</Link>
+              //     <Link to='/dashboard'>Dashboard</Link>
+              //   </li>
+              // </ul>
+
+              guestLinks}
         </Fragment>
       )}
     </nav>

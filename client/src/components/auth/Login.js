@@ -10,9 +10,8 @@ const Login = ({ login, isAuthenticated }) => {
     password: '',
   });
 
-  let navigate = useNavigate();
-
   const { email, password } = formData;
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,13 +20,12 @@ const Login = ({ login, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(email, password);
-    login({ email, password });
-
-    // Redirect after login
-    if (isAuthenticated) {
-      navigate('/dashboard');
-    }
+    login(email, password);
   };
+
+  if (isAuthenticated) {
+    navigate('/dashboard');
+  }
 
   return (
     <div className='auth-container'>

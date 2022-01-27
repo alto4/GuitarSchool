@@ -14,9 +14,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     passwordConfirm: '',
   });
 
-  let navigate = useNavigate();
-
   const { email, name, password, passwordConfirm } = formData;
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,12 +32,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
 
     register({ name, email, password });
-
-    // Redirect after login
-    if (isAuthenticated) {
-      navigate('/dashboard');
-    }
   };
+
+  if (isAuthenticated) {
+    navigate('/dashboard');
+  }
 
   return (
     <div className='auth-container'>

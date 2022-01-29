@@ -1,7 +1,16 @@
 import axios from 'axios';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { setAlert } from './alert';
-import { REGISTER_SUCCESS, LOGIN_SUCCESS, REGISTER_FAIL, LOGIN_FAIL, USER_LOADED, AUTH_ERROR, LOGOUT } from './types';
+import {
+  REGISTER_SUCCESS,
+  LOGIN_SUCCESS,
+  REGISTER_FAIL,
+  LOGIN_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGOUT,
+  CLEAR_PROFILE,
+} from './types';
 import setAuthToken from '../utils/setAuthToken';
 
 // Authenticate existing user
@@ -43,7 +52,6 @@ export const register =
 
       dispatch(loadUser());
 
-      let navigate = useNavigate();
       // Redirect after login
       return <Navigate to='/dashboard' />;
     } catch (error) {
@@ -95,5 +103,9 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
+  });
+
+  dispatch({
+    type: CLEAR_PROFILE,
   });
 };

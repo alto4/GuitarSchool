@@ -12,7 +12,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/auth/PrivateRoute';
 import { Provider } from 'react-redux';
 import store from './store';
-import { loadUser, login } from './actions/auth';
+import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
 if (localStorage.token) {

@@ -19,7 +19,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul className='nav-links'>
       <li>
-        <Link to='/'>Home</Link>
         <Link to='/lessons'>Lessons</Link>
         <Link to='/dashboard'>Dashboard</Link>
         <Link to='/login' onClick={logout}>

@@ -16,7 +16,6 @@ const ProfileSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    required: true,
     default: 'Student',
   },
   bio: {

@@ -9,6 +9,7 @@ import Register from './components/auth/Register';
 import Lessons from './components/lessons/Lessons';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/dashboard/CreateProfile';
 import PrivateRoute from './components/auth/PrivateRoute';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -38,6 +39,7 @@ function App() {
             {/* TODO: Fix private routes using react-router V6 (changes) */}
             <Route element={<PrivateRoute isLoggedIn={true} auth={{ isAuthenticated: true, loading: false }} />}>
               <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/create-profile' element={<CreateProfile />} />
             </Route>
           </Routes>
           <Footer />

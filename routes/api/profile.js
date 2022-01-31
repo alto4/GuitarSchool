@@ -46,17 +46,16 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { instruments, level, genres, type, bio } = req.body;
+    const { username, instruments, level, genres, type, bio } = req.body;
 
     // Extra profile details
     const profileData = {};
 
     profileData.user = req.user.id;
-    instruments
-      ? (profileData.instruments = instruments.split(',').map((instrument) => instrument.trim()))
-      : (profileData.instruments = []);
+    username ? (profileData.username = username) : (profileData.username = '');
+    instruments ? (profileData.instruments = instruments) : (profileData.instruments = []);
     level ? (profileData.level = level) : (profileData.level = '');
-    genres ? (profileData.genres = genres.split(',').map((genre) => genre.trim())) : (profileData.genres = []);
+    genres ? (profileData.genres = genres) : (profileData.genres = []);
     type ? (profileData.type = type) : (profileData.type = '');
     bio ? (profileData.bio = bio) : (profileData.bio = '');
 

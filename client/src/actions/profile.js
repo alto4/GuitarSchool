@@ -31,14 +31,11 @@ export const upsertProfile =
         payload: res.data,
       });
 
-      dispatch({
-        type: SET_ALERT,
-        payload: edit ? 'Your profile has successfully been updated.' : 'Your profile has successfully been created.',
-      });
+      dispatch(
+        setAlert(edit ? 'Your profile has successfully been updated.' : 'Your profile has successfully been created.')
+      );
 
-      if (!edit) {
-        navigate('/dashboard');
-      }
+      navigate('/dashboard');
     } catch (error) {
       alert('Error!');
       console.log('error data => ', error);

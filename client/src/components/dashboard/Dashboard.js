@@ -21,6 +21,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
         <Fragment>
           <h1>You already have a profile with this info as JSON:</h1>
           <p>{JSON.stringify(profile)}</p>
+          <Link to='/edit-profile'>Edit Profile</Link>
         </Fragment>
       ) : (
         <Fragment>

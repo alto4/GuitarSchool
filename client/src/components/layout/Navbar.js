@@ -10,6 +10,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li>
         <Link to='/'>Home</Link>
         <Link to='/lessons'>Lessons</Link>
+        <Link to='/profiles'>Students</Link>
         <Link to='/login'>Login</Link>
         <Link to='/register'>Register</Link>
       </li>
@@ -20,6 +21,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <ul className='nav-links'>
       <li>
         <Link to='/lessons'>Lessons</Link>
+        <Link to='/profiles'>Students</Link>
         <Link to='/dashboard'>Dashboard</Link>
         <Link to='/login' onClick={logout}>
           <i className='fa fa-sign-out'></i>Logout

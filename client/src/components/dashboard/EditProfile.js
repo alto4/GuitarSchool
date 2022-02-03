@@ -27,7 +27,7 @@ const EditProfile = ({ profile: { profile, loading }, upsertProfile, getCurrentP
       genres: loading || !profile.genres ? '' : profile.genres,
       bio: loading || !profile.bio ? '' : profile.bio,
     });
-  }, []);
+  }, [getCurrentProfile, loading, profile]);
 
   const { username, type, instruments, level, genres, bio } = formData;
 

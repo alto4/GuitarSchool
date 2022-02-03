@@ -73,7 +73,7 @@ router.post(
       // TODO: Change expiresIn to 3600s before deployment
       jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 3600000000 }, (error, token) => {
         if (error) throw err;
-        res.json({ token });
+        res.json({ payload, token });
       });
     } catch (error) {
       console.error(error.message);

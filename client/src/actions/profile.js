@@ -43,7 +43,7 @@ export const getProfileById = (userId) => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
 
   try {
-    const res = await axios.get(`/api/profile/${userId}`);
+    const res = await axios.get(`/api/profile/user/${userId}`);
 
     dispatch({
       type: GET_PROFILE,
@@ -94,7 +94,7 @@ export const upsertProfile =
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm('Are you sure you would like to delete your account? This action cannot be undone.')) {
     try {
-      const res = axios.delete('/api/profile');
+      axios.delete('/api/profile');
 
       dispatch({
         type: CLEAR_PROFILE,

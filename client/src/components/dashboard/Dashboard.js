@@ -9,8 +9,7 @@ import { deleteAccount } from '../../actions/profile';
 const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: { profile, loading } }) => {
   useEffect(() => {
     getCurrentProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getCurrentProfile]);
 
   return loading && !profile ? (
     <Spinner />

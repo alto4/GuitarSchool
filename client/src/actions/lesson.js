@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_LESSONS, LESSON_ERROR, UPDATE_ENROLLMENT } from './types';
+import { GET_LESSONS, LESSON_ERROR, UPDATE_ENROLLMENT, DELETE_LESSON } from './types';
 
 // Get all lessons
 export const getLessons = () => async (dispatch) => {
@@ -26,6 +26,8 @@ export const enroll = (lessonId) => async (dispatch) => {
       type: UPDATE_ENROLLMENT,
       payload: { lessonId, students: res.data },
     });
+
+    dispatch(setAlert('Lesson removed'));
   } catch (error) {
     dispatch({
       type: LESSON_ERROR,
@@ -41,6 +43,22 @@ export const unenroll = (lessonId) => async (dispatch) => {
     dispatch({
       type: UPDATE_ENROLLMENT,
       payload: { lessonId, students: res.data },
+    });
+  } catch (error) {
+    dispatch({
+      type: LESSON_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status },
+    });
+  }
+};
+
+// Delete a lesson
+export const deleteLesson = (lessonId) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`api/lessons/${lessonId}`);
+    dispatch({
+      type: DELETE_LESSON,
+      payload: lessonId,
     });
   } catch (error) {
     dispatch({

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_LESSONS, LESSON_ERROR, UPDATE_ENROLLMENT, CREATE_LESSON, DELETE_LESSON } from './types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_ENROLLMENT, CREATE_LESSON, DELETE_LESSON } from './types';
 
 // Get all lessons
 export const getLessons = () => async (dispatch) => {
@@ -14,6 +14,22 @@ export const getLessons = () => async (dispatch) => {
     dispatch({
       type: LESSON_ERROR,
       payload: { msg: error.response.statusText, status: error.response.status },
+    });
+  }
+};
+
+// Get a single lesson
+export const getLesson = (lessonId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/lessons/${lessonId}`);
+    dispatch({
+      type: GET_LESSON,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: LESSON_ERROR,
+      payload: { msg: error.response, status: error.response },
     });
   }
 };

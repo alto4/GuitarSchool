@@ -7,6 +7,7 @@ import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Lessons from './components/lessons/Lessons';
+import Lesson from './components/lesson/Lesson';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/dashboard/CreateProfile';
@@ -38,6 +39,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Landing />} />
             <Route path='/lessons' element={<Lessons />} />
+            <Route path='/lessons/:id' element={<Lesson />} />
             <Route path='/profiles' element={<Profiles />} />
             <Route path='/profile/:id' element={<Profile />} />
             <Route path='/login' element={<Login />} />

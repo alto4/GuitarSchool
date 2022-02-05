@@ -30,13 +30,13 @@ const LessonCard = ({
           {students.length} student {students.length > 1 && 's'} enrolled.
         </p>
       )}
-      <Link to={`/lesson/${_id}`}>
+      <Link to={`/lessons/${_id}`}>
         <button className='auth-button'>View Lesson</button>
       </Link>
       <button onClick={(e) => enroll(_id)} className='auth-button'>
         Enroll
       </button>
-      {!auth.loading && user === auth?.payload?.user.id && (
+      {!auth.loading && user === auth?.payload?.user?.id && (
         <button onClick={(e) => deleteLesson(_id)} className='auth-button'>
           Delete Lesson
         </button>

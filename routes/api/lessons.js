@@ -126,10 +126,10 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
-// PUT api/lessons/register/:id
+// PUT api/lessons/enroll/:id
 // Register for a lesson
 // Private
-router.put('/register/:id', auth, async (req, res) => {
+router.put('/enroll/:id', auth, async (req, res) => {
   try {
     const lesson = await Lesson.findById(req.params.id);
 

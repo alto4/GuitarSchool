@@ -19,9 +19,25 @@ const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: 
       <p>Welcome {profile && profile.user.name}</p>
       {profile ? (
         <Fragment>
-          <h1>You already have a profile with this info as JSON:</h1>
-          <p>{JSON.stringify(profile)}</p>
-          <Link to='/edit-profile'>Edit Profile</Link>
+          <h2>Your Profile Information</h2>
+          <span>Name: {profile?.user?.name}</span>
+          <span>Type: {profile?.type}</span>
+          <p>Instruments:</p>
+          <ul>
+            {profile?.instruments.map((instrument) => (
+              <li>{instrument}</li>
+            ))}
+          </ul>
+          <p>Genres</p>
+          <ul>
+            {profile?.genres.map((genre) => (
+              <li>{genre}</li>
+            ))}
+          </ul>
+          <p>Bio: {profile?.bio} </p>
+          <Link to='/edit-profile' className='auth-button'>
+            <button>Edit Profile</button>
+          </Link>
         </Fragment>
       ) : (
         <Fragment>

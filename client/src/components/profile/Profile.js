@@ -9,13 +9,31 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
   const { id } = useParams();
   useEffect(() => {
     getProfileById(id);
-  }, [getProfileById]);
+  }, [getProfileById, id]);
+
+  console.log('profile data => ', profile);
+
   return (
     <Fragment>
-      {loading ? (
+      {loading || !profile ? (
         <Spinner />
       ) : (
         <Fragment>
+          <h1>Name: {profile?.user?.name}</h1>
+          <span>Type: {profile?.type}</span>
+          <p>Instruments:</p>
+          <ul>
+            {profile?.instruments.map((instrument) => (
+              <li>{instrument}</li>
+            ))}
+          </ul>
+          <p>Genres</p>
+          <ul>
+            {profile?.genres.map((genre) => (
+              <li>{genre}</li>
+            ))}
+          </ul>
+          <p>Bio: {profile?.bio} </p>
           <Link to='/profiles'>View All Profiles</Link>
         </Fragment>
       )}

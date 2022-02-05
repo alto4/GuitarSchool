@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { upsertProfile } from '../../actions/profile';
 import { getCurrentProfile } from '../../actions/profile';
@@ -65,8 +65,11 @@ const EditProfile = ({ profile: { profile, loading }, upsertProfile, getCurrentP
         <input type='text' name='genres' value={genres} onChange={(e) => onChange(e)} placeholder='Genres' />
         <label htmlFor='bio'>Biography:</label>
         <input type='text' name='bio' value={bio} onChange={(e) => onChange(e)} placeholder='Biography' />
+        <Link to='/dashboard'>
+          <button className='auth-button'>Cancel</button>
+        </Link>
         <button className='auth-button' onClick={(e) => onSubmit(e)}>
-          Create
+          Save
         </button>
       </form>
     </div>

@@ -40,13 +40,13 @@ function App() {
             <Route path='/' element={<Landing />} />
             <Route path='/lessons' element={<Lessons />} />
             <Route path='/lessons/:id' element={<Lesson />} />
-            <Route path='/profiles' element={<Profiles />} />
-            <Route path='/profile/:id' element={<Profile />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />s
             {/* TODO: Fix private routes using react-router V6 (changes) */}
             <Route element={<PrivateRoute isLoggedIn={true} auth={{ isAuthenticated: true, loading: false }} />}>
               <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/profiles' element={<Profiles />} />
+              <Route path='/profile/:id' element={<Profile />} />
               <Route path='/create-profile' element={<CreateProfile />} />
               <Route path='/edit-profile' element={<EditProfile />} />
             </Route>

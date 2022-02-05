@@ -1,4 +1,4 @@
-import { GET_LESSONS, LESSON_ERROR, UPDATE_ENROLLMENT, DELETE_LESSON } from '../actions/types';
+import { GET_LESSONS, LESSON_ERROR, UPDATE_ENROLLMENT, CREATE_LESSON, DELETE_LESSON } from '../actions/types';
 
 const initialState = {
   lessons: [],
@@ -16,6 +16,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         lessons: payload,
+        loading: false,
+      };
+    case CREATE_LESSON:
+      return {
+        ...state,
+        lessons: [...state.lessons, payload],
         loading: false,
       };
     case DELETE_LESSON:

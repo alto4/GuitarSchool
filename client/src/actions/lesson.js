@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_LESSONS, LESSON_ERROR, UPDATE_ENROLLMENT, DELETE_LESSON } from './types';
+import { GET_LESSONS, LESSON_ERROR, UPDATE_ENROLLMENT, CREATE_LESSON, DELETE_LESSON } from './types';
 
 // Get all lessons
 export const getLessons = () => async (dispatch) => {
@@ -27,7 +27,7 @@ export const enroll = (lessonId) => async (dispatch) => {
       payload: { lessonId, students: res.data },
     });
 
-    dispatch(setAlert('Lesson removed'));
+    dispatch(setAlert('Enrolled in new lesson'));
   } catch (error) {
     dispatch({
       type: LESSON_ERROR,
@@ -44,6 +44,26 @@ export const unenroll = (lessonId) => async (dispatch) => {
       type: UPDATE_ENROLLMENT,
       payload: { lessonId, students: res.data },
     });
+
+    dispatch(setAlert('Unenrolled from lesson'));
+  } catch (error) {
+    dispatch({
+      type: LESSON_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status },
+    });
+  }
+};
+
+// Create a new lesson
+export const createLesson = (data) => async (dispatch) => {
+  try {
+    const res = await axios.post(`api/lessons`, data);
+    dispatch({
+      type: CREATE_LESSON,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('Lesson successfully created'));
   } catch (error) {
     dispatch({
       type: LESSON_ERROR,
@@ -55,11 +75,14 @@ export const unenroll = (lessonId) => async (dispatch) => {
 // Delete a lesson
 export const deleteLesson = (lessonId) => async (dispatch) => {
   try {
-    const res = await axios.delete(`api/lessons/${lessonId}`);
+    await axios.delete(`api/lessons/${lessonId}`);
+
     dispatch({
       type: DELETE_LESSON,
       payload: lessonId,
     });
+
+    dispatch(setAlert('Lesson successfully deleted.'));
   } catch (error) {
     dispatch({
       type: LESSON_ERROR,

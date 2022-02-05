@@ -36,7 +36,7 @@ const LessonCard = ({
       <button onClick={(e) => enroll(_id)} className='auth-button'>
         Enroll
       </button>
-      {!auth.loading && user === auth.payload.user.id && (
+      {!auth.loading && user === auth?.payload?.user.id && (
         <button onClick={(e) => deleteLesson(_id)} className='auth-button'>
           Delete Lesson
         </button>

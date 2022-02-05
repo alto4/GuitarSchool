@@ -62,7 +62,7 @@ router.post(
 // GET api/lessons
 // Get all lessons
 // Private
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const lessons = await Lesson.find().sort({ createdOn: -1 });
     res.json(lessons);
@@ -75,7 +75,7 @@ router.get('/', auth, async (req, res) => {
 // GET api/lessons/:id
 // Get single lesson by ID
 // Private
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const lesson = await Lesson.findById(req.params.id);
 

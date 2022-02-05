@@ -27,7 +27,7 @@ const LessonCard = ({
       <p>{description}</p>
       {students.length > 0 && (
         <p>
-          {students.length} student {students.length > 1 && 's'} enrolled.
+          {students.length} student{students.length > 1 && 's'} enrolled.
         </p>
       )}
       <Link to={`/lessons/${_id}`}>

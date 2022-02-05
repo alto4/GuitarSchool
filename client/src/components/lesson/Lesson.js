@@ -44,10 +44,10 @@ const Lesson = (props) => {
       <p>{lessonDetails?.description}</p>
       {lessonDetails?.students.length > 0 && (
         <p>
-          {lessonDetails?.students.length} student {lessonDetails?.students.length > 1 && 's'} enrolled.
+          {lessonDetails?.students.length} student{lessonDetails?.students.length > 1 && 's'} enrolled.
         </p>
       )}
-      <button onClick={(e) => enroll(id)} className='auth-button'>
+      <button onClick={(e) => props.enroll(id)} className='auth-button'>
         Enroll
       </button>
       {lessonDetails?.user === props.auth?.payload?.user?.id && (

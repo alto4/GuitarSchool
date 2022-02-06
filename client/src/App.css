@@ -48,17 +48,21 @@ footer {
   margin: auto;
 }
 
-button {
+button {  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
   font-weight: 600;
-   letter-spacing: .4px; 
-  padding: 1rem 2rem;
+  letter-spacing: .4px; 
+  padding: 1rem 2rem; 
+  cursor: pointer;
   background: #227c67;
   border-radius: 1000000000000px;
   border: none;
   color: #eee;
   font-size: 1rem;
   margin: 0 1rem;
-  cursor: pointer
 }
 
 .btn-secondary {
@@ -96,35 +100,56 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 400px;
+  max-width: 450px;
   margin: auto;
   text-align: center;
 }
 
-.auth-container label,
-.auth-container input {
-  text-align: left;
-  padding: .5rem 0;
-}
-
-::placeholder {
-  padding-left: .5rem;
-}
-
-.auth-form {
+form {
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
-  border: 1px solid #ccc;
+  padding: 2rem 2rem;
+  border: 3px solid #ccc;
   border-radius: 1rem;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.15);
 }
 
-.auth-button {
-  display: block;
+form button {
   width: 100%;
-  height: 45px;
-  padding: .5rem;
-  margin: 1rem 0;
+  margin: 1.7rem 0 1rem;
+}
+
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  text-align: left;
+  padding: .8rem 0;
+}
+
+input {
+  font-size: 1rem;
+  text-align: left;
+  padding: .5rem 0;
+  border-radius: 10000000000px;
+  border: 3px solid #ccc;
+  padding: .8rem 1rem;
+  outline: none;
+}
+
+hr {
+  margin: 1rem;
+}
+
+form p a {
+  color: #227c67;
+  font-weight: 700;
 }
 
 footer {

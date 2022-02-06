@@ -7,12 +7,14 @@ const Landing = () => {
       <div className='hero-text'>
         <h1>Welcome to Guitar School</h1>
         <p>We look forward to helping you in your musical journey.</p>
-        <Link to='register'>
-          <button>Join Now</button>
-        </Link>
-        <Link to='login'>
-          <button className='btn-secondary'>Sign In</button>
-        </Link>
+        <div className='button-container'>
+          <Link to='register'>
+            <button>Join Now</button>
+          </Link>
+          <Link to='login'>
+            <button className='btn-secondary'>Sign In</button>
+          </Link>
+        </div>
       </div>
     </section>
   );

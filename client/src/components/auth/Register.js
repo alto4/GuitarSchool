@@ -53,7 +53,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           name='passwordConfirm'
           value={passwordConfirm}
           onChange={(e) => onChange(e)}
-          placeholder='ConfirmPassword'
+          placeholder='Confirm Password'
         />
         <button className='auth-button' onClick={(e) => onSubmit(e)}>
           Register

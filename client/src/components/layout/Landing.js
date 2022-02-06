@@ -6,13 +6,13 @@ const Landing = () => {
     <section className='hero-container container'>
       <div className='hero-text'>
         <h1>Welcome to Guitar School</h1>
-        <p>
-          We look forward to helping you in your musical journey. By providing a collection of curated vide lessons,
-          written guides, and public domain sheet music, we are excited to foster an online community of guitar-seekers
-          from around the world.
-        </p>
-        <Link to='register'>Join Now</Link>
-        <Link to='login'>Sign In</Link>
+        <p>We look forward to helping you in your musical journey.</p>
+        <Link to='register'>
+          <button>Join Now</button>
+        </Link>
+        <Link to='login'>
+          <button className='btn-secondary'>Sign In</button>
+        </Link>
       </div>
     </section>
   );

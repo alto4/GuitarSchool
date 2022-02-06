@@ -3,7 +3,9 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer>
-      <p>&copy;Copyright Guitar School, 2022</p>
+      <p>
+        <i className='fa fa-copyright fa-sm' /> Copyright Guitar School, 2022 <i className='fas fa-music'></i>
+      </p>
     </footer>
   );
 };

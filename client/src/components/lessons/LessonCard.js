@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { enroll, unenroll, deleteLesson } from '../../actions/lesson';
+import placeholder from '../../assets/course_placeholder.jpg';
 
 const LessonCard = ({
   enroll,
@@ -16,31 +17,40 @@ const LessonCard = ({
   useEffect(() => {}, [lesson]);
 
   return (
-    <div style={{ maxWidth: '350px' }}>
-      <h2>
-        {level}: {title}
-      </h2>
-      <span>
-        Added on <Moment format='YYYY-MM-DD'>{createdOn}</Moment> by {user}
-      </span>
+    <div className='lesson-card'>
+      <div className='title'>
+        <h2>
+          {title} ({level}){' '}
+          {!auth.loading && user === auth?.payload?.user?.id && (
+            <button onClick={(e) => deleteLesson(_id)} className='btn-secondary'>
+              <i className='fa fa-trash'></i>
+            </button>
+          )}
+        </h2>
+      </div>
+      <div className='body'>
+        <img src={placeholder} alt={title} />
+        <div>
+          <span>
+            Added on <Moment format='YYYY-MM-DD'>{createdOn}</Moment> by {user}
+          </span>
+          <p>{description}</p>
+          {students.length > 0 && (
+            <p>
+              {students.length} student{students.length > 1 && 's'} enrolled.
+            </p>
+          )}{' '}
+        </div>
+      </div>
+      <div className='button-container'>
+        <Link to={`/lessons/${_id}`}>
+          <button className='auth-button'>View Lesson</button>
+        </Link>
 
-      <p>{description}</p>
-      {students.length > 0 && (
-        <p>
-          {students.length} student{students.length > 1 && 's'} enrolled.
-        </p>
-      )}
-      <Link to={`/lessons/${_id}`}>
-        <button className='auth-button'>View Lesson</button>
-      </Link>
-      <button onClick={(e) => enroll(_id)} className='auth-button'>
-        Enroll
-      </button>
-      {!auth.loading && user === auth?.payload?.user?.id && (
-        <button onClick={(e) => deleteLesson(_id)} className='auth-button'>
-          Delete Lesson
+        <button onClick={(e) => enroll(_id)} className='btn-secondary'>
+          Enroll
         </button>
-      )}
+      </div>
     </div>
   );
 };

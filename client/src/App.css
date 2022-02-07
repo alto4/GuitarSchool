@@ -67,7 +67,16 @@ button {
 
 .btn-secondary {
   background: #C02D28;
-  
+}
+
+.btn-close { 
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  color: #333;
 }
 
 .hero-container {
@@ -107,6 +116,7 @@ button {
 
 form {
   display: flex;
+  position: relative;
   flex-direction: column;
   padding: 2rem 2rem;
   border: 3px solid #ccc;
@@ -123,6 +133,7 @@ form button {
   display: flex;
   width: 100%;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 label {
@@ -150,6 +161,73 @@ hr {
 form p a {
   color: #227c67;
   font-weight: 700;
+}
+
+.container h1 {
+  margin: 50px auto .5rem;
+  font-size: 2rem;
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-color: #227c67 ;
+  
+}
+
+.lessons-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  min-height: 100vh;
+  margin: 50px auto;
+}
+
+.lesson-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  margin: 1rem;
+  height: 400px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.15);
+}
+
+.lesson-card .title {
+  border-bottom: 4px solid #227c67;
+  width: 80%;
+  padding: 1rem;
+}
+
+.lesson-card .body {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  margin: 2rem auto;
+  padding-bottom: 1rem;
+  align-items: center;
+  text-align: left;
+  border-bottom: 4px solid #227c67;
+  width: 80%;
+}
+
+.lesson-card img {
+  height: 135px;
+  width: 135px;
+  object-fit: cover;
+  border-radius: 100%;
+  margin: .2rem auto;
+}
+
+.crud-form-container {
+  max-width: 800px;
+}
+
+.crud-form-container .button-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 100px;
+}
+
+.container {
+  text-align: center
 }
 
 footer {

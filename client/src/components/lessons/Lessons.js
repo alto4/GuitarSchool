@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -7,6 +7,8 @@ import LessonForm from './LessonForm';
 import { getLessons } from '../../actions/lesson';
 
 const Lessons = ({ getLessons, lesson: { lessons, loading }, auth: { isAuthenticated }, profile: { profile } }) => {
+  const [showLessonForm, setShowLessonForm] = useState(false);
+
   useEffect(() => {
     getLessons();
   }, [getLessons]);
@@ -14,18 +16,37 @@ const Lessons = ({ getLessons, lesson: { lessons, loading }, auth: { isAuthentic
   return loading ? (
     <Spinner />
   ) : (
-    <div className='container'>
+    <section className='container'>
       <h1>Lessons Homepage</h1>
-      <p>Check out our collection of lessons below</p>
-      {isAuthenticated && profile?.type === 'Instructor' && <LessonForm />}
+      <p>Check out our collection of lessons below Show?{showLessonForm ? 'true' : 'false'}</p>
+      {isAuthenticated && profile?.type === 'Instructor' && (
+        <div>
+          {showLessonForm ? (
+            <LessonForm
+              closeForm={(e) => {
+                e.preventDefault();
+                setShowLessonForm(false);
+              }}
+            />
+          ) : (
+            <button
+              onClick={() => {
+                setShowLessonForm(true);
+              }}
+            >
+              Add a Lesson
+            </button>
+          )}
+        </div>
+      )}
 
-      <div className='lessons-container' style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+      <div className='lessons-container'>
         {lessons.map((lesson) => (
           // <p>{JSON.stringify(lesson)}</p>
           <LessonCard id={lessons._id} lesson={lesson} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

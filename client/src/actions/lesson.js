@@ -37,7 +37,7 @@ export const getLesson = (lessonId) => async (dispatch) => {
 // Enroll in a lesson
 export const enroll = (lessonId) => async (dispatch) => {
   try {
-    const res = await axios.put(`api/lessons/enroll/${lessonId}`);
+    const res = await axios.put(`/api/lessons/enroll/${lessonId}`);
     dispatch({
       type: UPDATE_ENROLLMENT,
       payload: { lessonId, students: res.data },

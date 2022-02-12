@@ -15,21 +15,20 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <Fragment>
+        <section className='container'>
           <h1>Students</h1>
           <p>Meet fellow students from around the world!</p>
-          <div className='profiles'>
-            {profiles.length > 0 ? (
-              <div>
-                {profiles.map((p) => (
-                  <ProfileCard profile={p} />
-                ))}
-              </div>
-            ) : (
-              <h4>No student profiles found.</h4>
-            )}
-          </div>
-        </Fragment>
+
+          {profiles.length > 0 ? (
+            <div className='profiles-container container'>
+              {profiles.map((p) => (
+                <ProfileCard profile={p} />
+              ))}
+            </div>
+          ) : (
+            <h4>No student profiles found.</h4>
+          )}
+        </section>
       )}
     </Fragment>
   );

@@ -172,14 +172,21 @@ form p a {
   
 }
 
-.lessons-container {
+.lessons-container,
+.profiles-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   min-height: 100vh;
   margin: 50px auto;
 }
 
-.lesson-card {
+.profiles-container {
+  grid-template-columns: repeat(3, 1fr);
+  margin: 10px auto;
+}
+
+.lesson-card,
+.profile-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -191,7 +198,8 @@ form p a {
   box-shadow: 0 4px 20px rgb(0 0 0 / 0.15);
 }
 
-.lesson-card .title {
+.lesson-card .title, 
+.profile-card .title {
   display: grid;
   grid-template-columns: 3fr 1fr;
   align-items: center;
@@ -211,9 +219,37 @@ form p a {
   width: 80%;
 }
 
-.lesson-card img {
+.profile-card {
+  height: 550px;
+}
+
+.profile-card .body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  margin: 1rem auto;
+  padding-bottom: 1rem;
+  align-items: center;
+}
+
+.body .lead {
+  margin: .5rem;
+}
+
+
+.lesson-card img,
+.profile-card img {
   height: 135px;
   width: 135px;
+  object-fit: cover;
+  border-radius: 100%;
+  margin: .2rem auto;
+}
+
+.profile-card img {
+  height: 160px;
+  width: 160px;
   object-fit: cover;
   border-radius: 100%;
   margin: .2rem auto;
@@ -229,6 +265,16 @@ form p a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.profile-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.profile-details {
+  text-align: left;
+  padding: 2rem 1rem;
 }
 
 .lesson-container iframe {

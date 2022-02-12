@@ -12,12 +12,27 @@ const ProfileCard = ({
   },
 }) => {
   return (
-    <div>
+    <div className='profile-card'>
       <img src={avatar} alt={`Avatar of ${username}`} />
-      <h2>{name}</h2>
-      <p className='lead'>Instruments: {instruments.map((instrument) => instrument)}</p>
-      <p className='lead'>Genres: {genres.map((genre) => genre)}</p>
-      <Link to={`/profile/${_id}`}>View Profile</Link>
+      <div className='title'>
+        <h2>{name}</h2>
+      </div>
+      <div className='body'>
+        <p className='lead'>
+          <strong>Instruments:</strong>
+          <br /> {instruments.map((instrument) => instrument)}
+        </p>
+        <p className='lead'>
+          <strong>Genres: </strong>
+          <br />
+          {genres.map((genre, index) => `${genre}${index !== genres.length - 1 ? ', ' : ''}`)}
+        </p>
+      </div>
+      <div className='button-container'>
+        <Link to={`/profile/${_id}`}>
+          <button className='auth-button'>View Profile</button>
+        </Link>
+      </div>
     </div>
   );
 };

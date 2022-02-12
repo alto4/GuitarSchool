@@ -1,10 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import { getLesson } from '../../actions/lesson';
 import Moment from 'react-moment';
+import { setAlert } from '../../actions/alert';
 import { enroll, unenroll, deleteLesson } from '../../actions/lesson';
 
 const Lesson = (props) => {
@@ -18,6 +19,7 @@ const Lesson = (props) => {
     students: [],
   });
 
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -53,7 +55,17 @@ const Lesson = (props) => {
       ></iframe>
       <div className='lesson-details'>
         <div className='lesson-enrollment'>
-          <button onClick={(e) => props.enroll(lessonDetails?._id)} className='auth-button'>
+          <button
+            onClick={(e) => {
+              if (props.auth.isAuthenticated) {
+                props.enroll(lessonDetails?._id);
+              } else {
+                props.setAlert('Please register or login to enroll in lessons.');
+                navigate('/register');
+              }
+            }}
+            className='auth-button'
+          >
             Enroll
           </button>{' '}
           {lessonDetails?.user === props.auth?.payload?.user?.id && (
@@ -134,6 +146,7 @@ Lesson.propTypes = {
   auth: PropTypes.object.isRequired,
   enroll: PropTypes.func.isRequired,
   deleteLesson: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -141,4 +154,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getLesson, enroll, unenroll, deleteLesson })(Lesson);
+export default connect(mapStateToProps, { getLesson, enroll, unenroll, deleteLesson, setAlert })(Lesson);

@@ -20,13 +20,13 @@ const LessonCard = ({
     <div className='lesson-card'>
       <div className='title'>
         <h2>
-          {title} ({level}){' '}
-          {!auth.loading && user === auth?.payload?.user?.id && (
-            <button onClick={(e) => deleteLesson(_id)} className='btn-secondary'>
-              <i className='fa fa-trash'></i>
-            </button>
-          )}
+          {title} ({level})
         </h2>
+        {!auth.loading && user === auth?.payload?.user?.id && (
+          <button onClick={(e) => deleteLesson(_id)} className='btn-secondary'>
+            <i className='fa fa-trash'></i>
+          </button>
+        )}
       </div>
       <div className='body'>
         <img src={placeholder} alt={title} />
